@@ -15,6 +15,7 @@ class CreateEnderecosTable extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
+            
             $table->timestamps();
         });
     }
