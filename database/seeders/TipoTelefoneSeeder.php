@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use DB;
 class TipoTelefoneSeeder extends Seeder
 {
     /**
@@ -13,6 +13,12 @@ class TipoTelefoneSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('tipo_telefones')->insert([
+            'nome' => 'Fixo'
+        ]);
+
+        DB::table('tipo_telefones')->insert([
+            'nome' => 'Celular'
+        ]);
     }
 }
