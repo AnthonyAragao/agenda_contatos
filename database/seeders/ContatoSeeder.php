@@ -16,7 +16,7 @@ class ContatoSeeder extends Seeder
     {
         DB::table('contatos')->insert([
             'nome' => 'Tercio Rodrigo',
-            'enderecos_id' => 1
+            'endereco_id' => 1
         ]);
     }
 }

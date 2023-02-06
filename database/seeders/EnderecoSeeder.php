@@ -16,8 +16,7 @@ class EnderecoSeeder extends Seeder
         DB::table('enderecos')->insert([
             'logradouro' => 'Rua Tercio Andrade',
             'numero' => '123',
-            'cidade' => 'Sao Cristovao',
-            'contatos_id' => 1
+            'cidade' => 'Sao Cristovao'
         ]);
     }
 }
