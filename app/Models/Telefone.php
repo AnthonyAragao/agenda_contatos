@@ -32,9 +32,13 @@ class Telefone extends Model{
 
     ];
 
-    
+     /**
+     * Get the Endereco that owns the contato
+     *
+     * @return TipoTelefone
+     */
     public function tipoTelefoneRelationship(){
-        return $this->belongsTo(TipoTelefone::class, tipo_telefone_id);
+        return $this->belongsTo(TipoTelefone::class, 'tipo_telefone_id');
     }
 
 
