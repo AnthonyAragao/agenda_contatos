@@ -28,16 +28,53 @@ class Contato extends Model{
     ];
 
 
+    //Getters e Setters
+    //Get the endereco attribute
     public function getEnderecoAttribute(){
         return $this->enderecoRelationship;
     }
 
+    //Get the telefone attribute
     public function getTelefoneAttribute(){
         return $this->telefoneRelationship;
     }
 
+
+    //Get the categoria attribute
     public function getCategoriaAttribute(){
         return $this->categoriaRelationship;
+    }
+
+    /**
+     * Set the telefone's id
+     * @param int $value
+     * @return void
+     */
+    public function setTelefoneAttribute($value){
+        if(isset($value)){
+            $this->attributes['telefone_id'] = Telefone::where('id', $value)->first()->id;
+        }
+    }
+
+
+    /**
+     * Set the endereco's id
+     * @param int $value
+     * @return void
+     */
+    public function setEnderecoAttribute($value){
+        if(isset($value)){
+            $this->attributes['endereco_id'] = Endereco::where('id', $value)->first()->id;
+        }
+    }
+
+    /**
+     * Set the categoria attribute
+     * @param array $value
+     * @return void
+     */
+    public function setCategoriaAttribute($value){
+        $this->categoriaRelationship()->sync($value);
     }
 
     /**

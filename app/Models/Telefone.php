@@ -32,9 +32,22 @@ class Telefone extends Model{
 
     ];
 
+    //Get the tipo telefone attribute
     public function getTipoTelefoneAttribute(){
         return $this->tipoTelefoneRelationship;
     }
+
+    /**
+     * Set the tipo telefone id
+     * @param int $value
+     * @return void
+     */
+    public function setTipoTelefoneAttribute($value){
+        if(isset($value)){
+            $this->attributes['tipo_telefone_id'] = TipoTelefone::where('id', $value)->first()->id;
+        }
+    }
+
 
      /**
      * Get the Endereco that owns the contato
