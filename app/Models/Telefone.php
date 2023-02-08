@@ -32,7 +32,11 @@ class Telefone extends Model{
 
     ];
 
-    //Get the tipo telefone attribute
+    /**
+     * Get the telefone attribute
+     *
+     * @return string
+    */
     public function getTipoTelefoneAttribute(){
         return $this->tipoTelefoneRelationship;
     }

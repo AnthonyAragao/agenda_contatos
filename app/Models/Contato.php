@@ -29,18 +29,29 @@ class Contato extends Model{
 
 
     //Getters e Setters
-    //Get the endereco attribute
+    /**
+     * Get the endereco attribute
+     *
+     * @return string
+    */
     public function getEnderecoAttribute(){
         return $this->enderecoRelationship;
     }
 
-    //Get the telefone attribute
+    /**
+     * Get the telefone attribute
+     *
+     * @return string
+    */
     public function getTelefoneAttribute(){
         return $this->telefoneRelationship;
     }
 
-
-    //Get the categoria attribute
+    /**
+     * Get the categoria attribute
+     *
+     * @return string
+    */
     public function getCategoriaAttribute(){
         return $this->categoriaRelationship;
     }
