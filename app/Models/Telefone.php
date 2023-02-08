@@ -32,6 +32,10 @@ class Telefone extends Model{
 
     ];
 
+    public function getTipoTelefoneAttribute(){
+        return $this->tipoTelefoneRelationship;
+    }
+
      /**
      * Get the Endereco that owns the contato
      *
