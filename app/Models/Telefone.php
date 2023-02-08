@@ -32,4 +32,10 @@ class Telefone extends Model{
 
     ];
 
+    
+    public function tipoTelefoneRelationship(){
+        return $this->belongsTo(TipoTelefone::class, tipo_telefone_id);
+    }
+
+
 }
