@@ -21,9 +21,10 @@ class ContatoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-
-
+        $contatos = $this->contatos->all();
+        return $contatos;
     }
+
 
     /**
      * Show the form for creating a new resource.
