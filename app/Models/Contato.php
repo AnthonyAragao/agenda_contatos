@@ -54,4 +54,17 @@ class Contato extends Model{
     public function categoriaRelationship(){
         return $this->belongsToMany(Categoria::class, 'contatos_has_categorias', 'contato_id', 'categoria_id');
     }
+
+
+    public function getEnderecoAttribute(){
+        return $this->enderecoRelationship();
+    }
+
+    public function getTelefoneAttribute(){
+        return $this->telefoneRelationship();
+    }
+
+    public function getCategoriaAttribute(){
+        return $this->categoriaRelationship();
+    }
 }
