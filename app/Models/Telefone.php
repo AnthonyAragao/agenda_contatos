@@ -54,7 +54,7 @@ class Telefone extends Model{
 
 
      /**
-     * Get the Endereco that owns the contato
+     * Get the Tipo Telefone that owns the contato
      *
      * @return TipoTelefone
      */

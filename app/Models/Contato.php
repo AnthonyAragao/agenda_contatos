@@ -98,7 +98,7 @@ class Contato extends Model{
     }
 
      /**
-     * Get the Endereco that owns the contato
+     * Get the Telefone that belong to the contato
      *
      * @return Telefone
      */
@@ -107,7 +107,7 @@ class Contato extends Model{
     }
 
      /**
-     * Get the Endereco that owns the contato
+     * Get the Categoria that owns the contato
      *
      * @return Categoria
      */
