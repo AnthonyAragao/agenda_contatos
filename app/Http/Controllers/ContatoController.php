@@ -1,7 +1,12 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\Categoria;
+use App\Models\TipoTelefone;
 use Illuminate\Http\Request;
 use App\Models\Contato;
+
+
+
 
 class ContatoController extends Controller{
     /**
@@ -12,6 +17,8 @@ class ContatoController extends Controller{
      */
     public function __construct(Contato $contatos){
         $this->contatos = $contatos;
+        $this->tipoTelefones = TipoTelefone::all()->pluck('nome','id');
+        $this->categorias = Categoria::all()->pluck('nome','id');
     }
 
 
@@ -32,7 +39,9 @@ class ContatoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function create(){
-
+        $categorias = $this->categorias;
+        $tipoTelefones = $this->tipoTelefones;
+        return [$categorias, $tipoTelefones];
     }
 
     /**
