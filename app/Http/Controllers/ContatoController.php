@@ -50,8 +50,32 @@ class ContatoController extends Controller{
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
 
+     //***Testar depois***
+    public function store(Request $request){
+        $contato = $this->contatos->create([
+            'nome' => $request->nome,
+            'endereco_id' => $this->enderecos->create([
+                'logradouro' => $request->logradouro,
+                'numero' => $request->numero,
+                'cidade' => $request->cidade,
+            ])->id,
+        ]);
+
+
+        for ($i = 0; $i < $request->telefone->count(); $i++){
+            $telefone = $this->telefone->create([
+                'numero' => $request->numero[$i],
+                'tipo_telefones_id' => $request->tipoTelefone[$i],
+                ]);
+        }
+
+        //Many to many
+        if(isset($categorias_id)){
+            foreach($categorias_id as $categoria_id){
+                $contato->categoriaRelationship()->attach($categoria_id);
+            }
+        }
     }
 
     /**
