@@ -85,7 +85,12 @@ class ContatoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function show($id){
+        $form = 'disabled';
 
+        $contato = $this->contatos->find($id);
+        $categorias = $this->categorias;
+        $tipoTelefone = $this->tipoTelefones;
+        return [$contato, $categorias, $tipoTelefone, $form];
     }
 
     /**
