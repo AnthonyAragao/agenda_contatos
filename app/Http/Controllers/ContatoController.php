@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\TipoTelefone;
+use App\Models\Telefone;
 use Illuminate\Http\Request;
 use App\Models\Contato;
 
@@ -18,6 +19,7 @@ class ContatoController extends Controller{
     public function __construct(Contato $contatos){
         $this->contatos = $contatos;
         $this->tipoTelefones = TipoTelefone::all()->pluck('nome','id');
+        $this->telefones = new Telefone();
         $this->categorias = Categoria::all()->pluck('nome','id');
     }
 
@@ -142,8 +144,13 @@ class ContatoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        $contato = $this->contatos->find($id);
+        $contato->endereco->delete();
+        $telefones = $this->telefones->where($id,'contato_id');
+        foreach($telefones as $telefone){
+            $telefone->delete();
+        }
+        $contato->delete();
     }
 }
