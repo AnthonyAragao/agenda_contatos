@@ -114,7 +114,26 @@ class ContatoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        //
+        $contato = $this->contatos->find($id);
+        $contato->update([
+            'nome' => $request->nome,
+            'endereco_id' => tap($this->enderecos->find($contato->endereco_id))->update([
+                'logradouro' => $request->logradouro,
+                'cidade' => $request->cidade,
+                'numero' => $request->numero,
+            ])->id,
+        ]);
+
+
+        //muitos para muitos
+        $categorias_id = $request->categoria;
+        $contato->categoriaRelationship()->sync(null);
+
+        if(isset($categorias_id)){
+            foreach($categorias_id as $categoria_id){
+                $contato->categoriaRelationship()->attach(categoria_id);
+            }
+        }
     }
 
     /**
