@@ -31,7 +31,7 @@ class ContatoController extends Controller{
      */
     public function index(){
         $contatos = $this->contatos->all();
-        return $contatos;
+        return view('index', compact('contatos'));
     }
 
 
