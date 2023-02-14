@@ -7,6 +7,29 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>corraçãumm</h1>
+    {{-- {{$contatos}} --}}
 
+    <table>
+        <tbody>
+            <thead>
+                <tr>
+                    <th>Nomes</th>
+                    <th>Telefones</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            @foreach ($contatos as $contato)
+                <tr>
+                    <td>{{$contato->nome}}</td>
+                    {{-- <td>{{$contato->telefone->first()->numero}}</td> --}}
+                    <td>
+                        <a href="">Visualizar</a>
+                        <a href="">Editar</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>
