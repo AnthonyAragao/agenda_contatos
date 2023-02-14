@@ -16,8 +16,7 @@ class Categoria extends Model{
     * @var array
     */
     protected $hidden = [
-
-
+        
     ];
 
 
@@ -26,7 +25,6 @@ class Categoria extends Model{
     * @var array
     */
     protected $appends = [
-
 
     ];
 

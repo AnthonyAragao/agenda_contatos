@@ -16,7 +16,11 @@ class Contato extends Model{
     * @var array
     */
     protected $hidden = [
-
+        'categoriaRelationship',
+        'enderecoRelationship',
+        'telefoneRelationship',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -24,7 +28,9 @@ class Contato extends Model{
     * @var array
     */
     protected $appends = [
-
+        'categoria',
+        'endereco',
+        'telefone'
     ];
 
 
