@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Listagem de Contatos</h1>
-    <a href="">Novo contato</a>
+    <a href="{{route('contatos.create')}}">Novo contato</a>
 
     <div>
         <table>
@@ -33,8 +33,8 @@
                         </td>
 
                         <td>
-                            <a href="">Visualizar</a>
-                            <a href="">Editar</a>
+                            <a href="{{route('contatos.show', $contato->id)}}">Visualizar</a>
+                            <a href="{{route('contatos.edit', $contato->id)}}">Editar</a>
                         </td>
                     </tr>
                 @endforeach
