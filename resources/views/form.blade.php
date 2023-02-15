@@ -38,7 +38,9 @@
 
 
             {!!Form::label('tipo', 'Tipo: ')!!}
-            {!! Form::select('tipo', [1 => "Fixo"]) !!}
+
+
+            {!! Form::select('tipo', $tipoTelefones) !!}
 
             <br>
 
@@ -47,22 +49,17 @@
 
 
             {!!Form::label('tipo02', 'Tipo: ')!!}
-            {!! Form::select('tipo02', [1 => "Fixo"]) !!}
+            {!! Form::select('tipo02', $tipoTelefones) !!}
 
             <br>
-
-
             {!!Form::label('categorias', 'Categorias: ')!!}
+            @foreach ($categorias as $categoria)
+                {!!Form::checkbox('categoria', $loop->iteration)!!}
+                {!!Form::label('categoria', $categoria)!!}
 
-            {!!Form::checkbox('amigos', 'Amigos')!!}
-            {!!Form::label('amigos', 'Amigos')!!}
+            @endforeach
 
 
-            {!!Form::checkbox('vizinhos', 'Vizinhos')!!}
-            {!!Form::label('vizinhos', 'Vizinhos')!!}
-
-            {!!Form::checkbox('parentes', 'Parentes')!!}
-            {!!Form::label('parentes', 'Parentes')!!}
 
             <br>
 
