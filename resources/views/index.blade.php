@@ -22,7 +22,13 @@
             @foreach ($contatos as $contato)
                 <tr>
                     <td>{{$contato->nome}}</td>
-                    {{-- <td>{{$contato->telefone->first()->numero}}</td> --}}
+
+                    <td>
+                    @if(($contato->telefone->count())>0)
+                        {{$contato->telefone->first()->numero}}
+                    @endif
+                    </td>
+
                     <td>
                         <a href="">Visualizar</a>
                         <a href="">Editar</a>
