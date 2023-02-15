@@ -7,35 +7,39 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>corraçãumm</h1>
-    {{-- {{$contatos}} --}}
+    <h1>Listagem de Contatos</h1>
+    <a href="">Novo contato</a>
 
-    <table>
-        <tbody>
+    <div>
+        <table>
             <thead>
+                <h3>Contatos</h3>
                 <tr>
                     <th>Nomes</th>
                     <th>Telefones</th>
                     <th>Ações</th>
                 </tr>
             </thead>
-            @foreach ($contatos as $contato)
-                <tr>
-                    <td>{{$contato->nome}}</td>
+            <tbody>
+                @foreach ($contatos as $contato)
+                    <tr>
+                        <td>{{$contato->nome}}</td>
 
-                    <td>
-                    @if(($contato->telefone->count())>0)
-                        {{$contato->telefone->first()->numero}}
-                    @endif
-                    </td>
+                        <td>
+                        @foreach ($contato->telefone as $telefone)
+                            <br>{{$telefone->numero}}
+                                ({{$telefone->tipoTelefone->nome}});
+                        @endforeach
+                        </td>
 
-                    <td>
-                        <a href="">Visualizar</a>
-                        <a href="">Editar</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        <td>
+                            <a href="">Visualizar</a>
+                            <a href="">Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
