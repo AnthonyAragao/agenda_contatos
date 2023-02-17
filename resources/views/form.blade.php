@@ -19,37 +19,39 @@
             <br>
 
             {!!Form::label('logradouro', 'Logradouro: ')!!}
-            {!!Form::text('logradouro', null, ['placeholder'=>'Informe o logradouro: ']) !!}
+            {!!Form::text('logradouro', isset($contato)?$contato->endereco->logradouro:null , ['placeholder'=>'Informe o logradouro: ']) !!}
 
             <br>
 
             {!!Form::label('numero', 'Numero: ')!!}
-            {!!Form::text('numero', null, ['placeholder'=>'Informe o numero: ']) !!}
+            {!!Form::text('numero', isset($contato)?$contato->endereco->numero:null , ['placeholder'=>'Informe o numero: ']) !!}
 
             <br>
 
             {!!Form::label('cidade', 'Cidade: ')!!}
-            {!!Form::text('cidade', null, ['placeholder'=>'Informe a Cidade: ']) !!}
+            {!!Form::text('cidade', isset($contato)?$contato->endereco->cidade:null , ['placeholder'=>'Informe a Cidade: ']) !!}
 
             <br>
 
             {!!Form::label('telefone', 'Número de telefone 01: ')!!}
-            {!!Form::text('telefone', null, ['placeholder'=>'Informe o telefone 01:  ']) !!}
+            {!!Form::text('telefone', isset($contato) && $contato->telefone->get(0) != null?$contato->telefone->get(0)->numero:null, ['placeholder'=>'Informe o telefone 01:  ']) !!}
 
 
             {!!Form::label('tipo', 'Tipo: ')!!}
 
 
-            {!! Form::select('tipo', $tipoTelefones) !!}
+            {!! Form::select('tipo', $tipoTelefones, isset($contato) && (($contato->telefone->get(0)) != null)? $contato->telefone->get(0)->tipoTelefone->id:null,
+             ['placeholder'=>'Informe o Tipo: '] ) !!}
 
             <br>
 
             {!!Form::label('telefone02', 'Número de telefone 02: ')!!}
-            {!!Form::text('telefone02', null, ['placeholder'=>'Informe o telefone 02: ']) !!}
+            {!!Form::text('telefone02', isset($contato) &&  $contato->telefone->get(1) != null?$contato->telefone->get(1)->numero:null, ['placeholder'=>'Informe o telefone 02: ']) !!}
 
 
             {!!Form::label('tipo02', 'Tipo: ')!!}
-            {!! Form::select('tipo02', $tipoTelefones) !!}
+            {!! Form::select('tipo02', $tipoTelefones, isset($contato) && (($contato->telefone->get(1)) != null) ? $contato->telefone->get(1)->tipoTelefone->id:null,
+            ['placeholder'=>'Informe o Tipo: ']  ) !!}
 
             <br>
             {!!Form::label('categorias', 'Categorias: ')!!}
