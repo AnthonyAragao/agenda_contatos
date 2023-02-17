@@ -56,7 +56,7 @@
             <br>
             {!!Form::label('categorias', 'Categorias: ')!!}
             @foreach ($categorias as $categoria)
-                {!!Form::checkbox('categoria', $loop->iteration)!!}
+                {!!Form::checkbox('categoria', $loop->iteration, isset($contato) && ($contato->categoria->find($loop->iteration) !== null))!!}
                 {!!Form::label('categoria', $categoria)!!}
 
             @endforeach
