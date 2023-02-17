@@ -88,7 +88,6 @@ class ContatoController extends Controller{
      */
     public function show($id){
         $form = 'disabled';
-
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
