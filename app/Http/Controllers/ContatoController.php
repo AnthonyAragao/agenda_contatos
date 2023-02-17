@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Categoria;
+use App\Models\Endereco;
 use App\Models\TipoTelefone;
 use App\Models\Telefone;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class ContatoController extends Controller{
      */
     public function __construct(Contato $contatos){
         $this->contatos = $contatos;
+        $this->enderecos = new Endereco();
         $this->tipoTelefones = TipoTelefone::all()->pluck('nome','id');
         $this->telefones = new Telefone();
         $this->categorias = Categoria::all()->pluck('nome','id');
@@ -55,6 +57,8 @@ class ContatoController extends Controller{
 
      //***Testar depois***
     public function store(Request $request){
+        //dd($this->enderecos);
+        dd($request->all());
         $contato = $this->contatos->create([
             'nome' => $request->nome,
             'endereco_id' => $this->enderecos->create([
@@ -64,13 +68,23 @@ class ContatoController extends Controller{
             ])->id,
         ]);
 
+        $telefone = $this->telefone->create([
+            'numero' => $request->telefone,
+            'tipo_telefones_id' => $request->tipo,
+            ]);
 
-        for ($i = 0; $i < $request->telefone->count(); $i++){
-            $telefone = $this->telefone->create([
-                'numero' => $request->numero[$i],
-                'tipo_telefones_id' => $request->tipoTelefone[$i],
+
+        $telefone02 = $this->telefone->create([
+                'numero' => $request->telefone02,
+                'tipo_telefones_id' => $request->tipo02,
                 ]);
-        }
+
+        // for ($i = 0; $i < $request->telefone->count(); $i++){
+        //     $telefone = $this->telefone->create([
+        //         'numero' => $request->numero[$i],
+        //         'tipo_telefones_id' => $request->tipoTelefone[$i],
+        //         ]);
+        // }
 
         //Many to many
         if(isset($categorias_id)){
