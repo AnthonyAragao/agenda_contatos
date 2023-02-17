@@ -19,6 +19,10 @@ class TelefoneSeeder extends Seeder
             'tipo_telefone_id' => 1
         ]);
 
-
+        DB::table('telefones')->insert([
+            'numero' => '(79) 9 8128-3974',
+            'contato_id' => 1,
+            'tipo_telefone_id' => 1
+        ]);
     }
 }

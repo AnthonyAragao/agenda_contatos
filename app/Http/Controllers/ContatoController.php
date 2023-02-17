@@ -31,7 +31,7 @@ class ContatoController extends Controller{
      */
     public function index(){
         $contatos = $this->contatos->all();
-        return $contatos;
+        return view('index', compact('contatos'));
     }
 
 
@@ -43,7 +43,7 @@ class ContatoController extends Controller{
     public function create(){
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
-        return [$categorias, $tipoTelefones];
+        return view('form', compact('categorias', 'tipoTelefones'));
     }
 
     /**
@@ -88,11 +88,10 @@ class ContatoController extends Controller{
      */
     public function show($id){
         $form = 'disabled';
-
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
-        $tipoTelefone = $this->tipoTelefones;
-        return [$contato, $categorias, $tipoTelefone, $form];
+        $tipoTelefones = $this->tipoTelefones;
+        return view('form', compact('contato', 'categorias', 'tipoTelefones', 'form'));
     }
 
     /**
@@ -104,8 +103,8 @@ class ContatoController extends Controller{
     public function edit($id){
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
-        $tipoTelefone = $this->tipoTelefones;
-        return [$contato, $categorias, $tipoTelefone];
+        $tipoTelefones = $this->tipoTelefones;
+        return view('form', compact('contato', 'categorias', 'tipoTelefones'));
     }
 
     /**

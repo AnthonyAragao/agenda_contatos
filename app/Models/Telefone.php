@@ -18,8 +18,9 @@ class Telefone extends Model{
     * @var array
     */
     protected $hidden = [
-
-
+        'tipoTelefoneRelationship',
+        'created_at',
+        'updated_at'
     ];
 
 
@@ -28,8 +29,7 @@ class Telefone extends Model{
     * @var array
     */
     protected $appends = [
-
-
+        'tipoTelefone'
     ];
 
     /**
