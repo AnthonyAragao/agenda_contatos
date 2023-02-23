@@ -10,6 +10,13 @@
     <header>
         <h1>Formulário de Contato</h1>
     </header>
+    @csrf
+    @if(isset($contato))
+        {!! Form::open(['route' => ['contatos.update',$contato->id] ,'method' => 'PUT', 'name' => 'form']) !!}
+    @else
+        {!! Form::open(['route' => 'contatos.store','method' => 'POST', 'name' => 'form']) !!}
+    @endif
+
 
     <div>
         {!! Form::open(['route' => 'contatos.store','method' => 'POST', 'name' => 'form']) !!}

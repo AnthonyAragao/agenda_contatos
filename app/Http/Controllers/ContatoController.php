@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Categoria;
 use App\Models\Endereco;
 use App\Models\TipoTelefone;
@@ -10,19 +12,21 @@ use App\Models\Contato;
 
 
 
-class ContatoController extends Controller{
+class ContatoController extends Controller
+{
     /**
      * Instantiate a new controller instance.
      *
      * @param \App\Models\Contato $contatos
      * @return void
      */
-    public function __construct(Contato $contatos){
+    public function __construct(Contato $contatos)
+    {
         $this->contatos = $contatos;
         $this->enderecos = new Endereco();
-        $this->tipoTelefones = TipoTelefone::all()->pluck('nome','id');
+        $this->tipoTelefones = TipoTelefone::all()->pluck('nome', 'id');
         $this->telefones = new Telefone();
-        $this->categorias = Categoria::all()->pluck('nome','id');
+        $this->categorias = Categoria::all()->pluck('nome', 'id');
     }
 
 
@@ -31,7 +35,8 @@ class ContatoController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $contatos = $this->contatos->all();
         return view('index', compact('contatos'));
     }
@@ -42,7 +47,8 @@ class ContatoController extends Controller{
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create()
+    {
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
         return view('form', compact('categorias', 'tipoTelefones'));
@@ -55,10 +61,8 @@ class ContatoController extends Controller{
      * @return \Illuminate\Http\Response
      */
 
-     //***Testar depois***
-    public function store(Request $request){
-        // dd($this->enderecos);
-        // dd($request->all());
+    public function store(Request $request)
+    {
         $contato = $this->contatos->create([
             'nome' => $request->nome,
             'endereco_id' => $this->enderecos->create([
@@ -79,20 +83,12 @@ class ContatoController extends Controller{
             'contato_id' => $contato->id,
             'numero' => $request->telefone02,
             'tipo_telefone_id' => $request->tipo02,
-            ]);
-
-        // for ($i = 0; $i < $request->telefone->count(); $i++){
-        //     $telefone = $this->telefone->create([
-        //         'numero' => $request->numero[$i],
-        //         'tipo_telefones_id' => $request->tipoTelefone[$i],
-        //         ]);
-        // }
+        ]);
 
         $categorias_id = $request->categoria;
         //Many to many
-        if(isset($categorias_id)){
-            // dd($categorias_id);
-            foreach($categorias_id as $categoria_id){
+        if (isset($categorias_id)) {
+            foreach ($categorias_id as $categoria_id) {
                 $contato->categoriaRelationship()->attach($categoria_id);
             }
         }
@@ -105,7 +101,8 @@ class ContatoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
+    public function show($id)
+    {
         $form = 'disabled';
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
@@ -119,7 +116,8 @@ class ContatoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){
+    public function edit($id)
+    {
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
@@ -133,7 +131,9 @@ class ContatoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
         $contato = $this->contatos->find($id);
         $contato->update([
             'nome' => $request->nome,
@@ -144,15 +144,51 @@ class ContatoController extends Controller{
             ])->id,
         ]);
 
+        $telefone = $contato->telefone->get(0);
 
-        //muitos para muitos
-        $categorias_id = $request->categoria;
-        $contato->categoriaRelationship()->sync(null);
+        $this->telefones->find($telefone->id)->update([
+            'contato_id' => $contato->id,
+            'numero'  => $request->telefone,
+            'tipo_telefone_id' => $request->tipo
+        ]);
 
-        if(isset($categorias_id)){
-            foreach($categorias_id as $categoria_id){
-                $contato->categoriaRelationship()->attach(categoria_id);
+        $telefone02 = $contato->telefone->get(1);
+
+        if (empty($request->telefone02)) {
+            if (isset($telefone02)) {
+                $telefone02->delete();
             }
+
+
+            if (isset($request->telefone02)) {
+                // dd($request);
+                if (isset($telefone02)) {
+                    $this->telefones->find($telefone02->id)->update([
+                        'contato_id' => $contato->id,
+                        'numero'  => $request->telefone02,
+                        'tipo_telefone_id' => $request->tipo02
+                    ]);
+                } else {
+                    $telefone02 = $this->telefones->create([
+                        'contato_id' => $contato->id,
+                        'numero'  => $request->telefone02,
+                        'tipo_telefone_id' => $request->tipo02
+                    ]);
+                }
+            }
+
+
+            //muitos para muitos
+            $categorias_id = $request->categoria;
+            $contato->categoriaRelationship()->sync(null);
+
+            if (isset($categorias_id)) {
+                foreach ($categorias_id as $categoria_id) {
+                    $contato->categoriaRelationship()->attach($categoria_id);
+                }
+            }
+
+            return redirect()->route('contatos.show', $contato->id);
         }
     }
 
@@ -162,11 +198,12 @@ class ContatoController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $contato = $this->contatos->find($id);
         $contato->endereco->delete();
-        $telefones = $this->telefones->where($id,'contato_id');
-        foreach($telefones as $telefone){
+        $telefones = $this->telefones->where($id, 'contato_id');
+        foreach ($telefones as $telefone) {
             $telefone->delete();
         }
         $contato->delete();
