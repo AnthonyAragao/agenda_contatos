@@ -57,8 +57,8 @@ class ContatoController extends Controller{
 
      //***Testar depois***
     public function store(Request $request){
-        //dd($this->enderecos);
-        dd($request->all());
+        // dd($this->enderecos);
+        // dd($request->all());
         $contato = $this->contatos->create([
             'nome' => $request->nome,
             'endereco_id' => $this->enderecos->create([
@@ -68,16 +68,18 @@ class ContatoController extends Controller{
             ])->id,
         ]);
 
-        $telefone = $this->telefone->create([
-            'numero' => $request->telefone,
-            'tipo_telefones_id' => $request->tipo,
+
+        $telefone = $this->telefones->create([
+            'contato_id' => $contato->id,
+            'numero'  => $request->telefone,
+            'tipo_telefone_id' => $request->tipo
+        ]);
+
+        $telefone02 = $this->telefones->create([
+            'contato_id' => $contato->id,
+            'numero' => $request->telefone02,
+            'tipo_telefone_id' => $request->tipo02,
             ]);
-
-
-        $telefone02 = $this->telefone->create([
-                'numero' => $request->telefone02,
-                'tipo_telefones_id' => $request->tipo02,
-                ]);
 
         // for ($i = 0; $i < $request->telefone->count(); $i++){
         //     $telefone = $this->telefone->create([
@@ -86,12 +88,15 @@ class ContatoController extends Controller{
         //         ]);
         // }
 
+        $categorias_id = $request->categoria;
         //Many to many
         if(isset($categorias_id)){
+            // dd($categorias_id);
             foreach($categorias_id as $categoria_id){
                 $contato->categoriaRelationship()->attach($categoria_id);
             }
         }
+        return redirect()->route('contatos.index');
     }
 
     /**
