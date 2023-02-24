@@ -61,8 +61,7 @@ class ContatoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $contato = $this->contatos->create([
             'nome' => $request->nome,
             'endereco_id' => $this->enderecos->create([
@@ -79,11 +78,15 @@ class ContatoController extends Controller
             'tipo_telefone_id' => $request->tipo
         ]);
 
-        $telefone02 = $this->telefones->create([
-            'contato_id' => $contato->id,
-            'numero' => $request->telefone02,
-            'tipo_telefone_id' => $request->tipo02,
-        ]);
+        if(isset($request->telefone02)){
+            $telefone02 = $this->telefones->create([
+                'contato_id' => $contato->id,
+                'numero' => $request->telefone02,
+                'tipo_telefone_id' => $request->tipo02,
+            ]);
+        }
+
+
 
         $categorias_id = $request->categoria;
         //Many to many
@@ -145,7 +148,6 @@ class ContatoController extends Controller
         ]);
 
         $telefone = $contato->telefone->get(0);
-
         $this->telefones->find($telefone->id)->update([
             'contato_id' => $contato->id,
             'numero'  => $request->telefone,
@@ -153,16 +155,13 @@ class ContatoController extends Controller
         ]);
 
         $telefone02 = $contato->telefone->get(1);
-
-        if (empty($request->telefone02)) {
-            if (isset($telefone02)) {
+        if(empty($request->telefone02)) {
+            if(isset($telefone02)) {
                 $telefone02->delete();
             }
 
-
-            if (isset($request->telefone02)) {
-                // dd($request);
-                if (isset($telefone02)) {
+            if(isset($request->telefone02)) {
+                if(isset($telefone02)) {
                     $this->telefones->find($telefone02->id)->update([
                         'contato_id' => $contato->id,
                         'numero'  => $request->telefone02,
@@ -182,7 +181,7 @@ class ContatoController extends Controller
             $categorias_id = $request->categoria;
             $contato->categoriaRelationship()->sync(null);
 
-            if (isset($categorias_id)) {
+            if(isset($categorias_id)) {
                 foreach ($categorias_id as $categoria_id) {
                     $contato->categoriaRelationship()->attach($categoria_id);
                 }
