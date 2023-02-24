@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR   ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,13 @@
     <header>
         <h1>Formulário de Contato</h1>
     </header>
+    @csrf
+    @if(isset($contato))
+        {!! Form::open(['route' => ['contatos.update',$contato->id] ,'method' => 'PUT', 'name' => 'form']) !!}
+    @else
+        {!! Form::open(['route' => 'contatos.store','method' => 'POST', 'name' => 'form']) !!}
+    @endif
+
 
     <div>
         {!! Form::open(['route' => 'contatos.store','method' => 'POST', 'name' => 'form']) !!}
@@ -56,8 +63,8 @@
             <br>
             {!!Form::label('categorias', 'Categorias: ')!!}
             @foreach ($categorias as $categoria)
-                {!!Form::checkbox('categoria', $loop->iteration, isset($contato) && ($contato->categoria->find($loop->iteration) !== null) ,[ ($form)??null])!!}
-                {!!Form::label('categoria', $categoria)!!}
+                {!!Form::checkbox('categoria[]', $loop->iteration, isset($contato) && ($contato->categoria->find($loop->iteration) !== null) ,[ ($form)??null])!!}
+                {!!Form::label('categoria[]', $categoria)!!}
 
             @endforeach
 
@@ -65,7 +72,14 @@
 
             {!! Form::submit('Salvar')!!}
 
+
         {!! Form::close() !!}
+
+        @if(isset($contato))
+            {!! Form::open(['route' => ['contatos.destroy', $contato->id] ,'method' => 'DELETE', 'name' => 'form']) !!}
+                {!! Form::submit('Deletar') !!}
+            {!! Form::close() !!}
+        @endif
     </div>
 
 </body>
