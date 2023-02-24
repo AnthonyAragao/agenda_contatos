@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
-    <h1>Listagem de Contatos</h1>
+    <h1 class="text-center">Listagem de Contatos</h1>
     <a href="{{route('contatos.create')}}">Novo contato</a>
 
-    <div>
-        <table>
-            <thead>
-                <h3>Contatos</h3>
+    <div class="container">
+        <table class="table mx-auto">
+            <thead class="table-dark">
+                <h3 class="text-center mt-5">Contatos</h3>
                 <tr>
-                    <th>Nomes</th>
+                    <th>Nome</th>
                     <th>Telefones</th>
                     <th>Ações</th>
                 </tr>
@@ -34,8 +34,12 @@
                         </td>
 
                         <td>
-                            <a href="{{route('contatos.show', $contato->id)}}">Visualizar</a>
-                            <a href="{{route('contatos.edit', $contato->id)}}">Editar</a>
+                            <a href="{{route('contatos.show', $contato->id)}}">
+                                <button type="button" class="btn btn-secondary">Visualizar</button>
+                            </a>
+                            <a href="{{route('contatos.edit', $contato->id)}}">
+                                <button type="button" class="btn btn-warning">Editar</button>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
