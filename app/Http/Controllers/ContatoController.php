@@ -134,8 +134,7 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         // dd($request->all());
         $contato = $this->contatos->find($id);
         $contato->update([
@@ -159,23 +158,22 @@ class ContatoController extends Controller
             if(isset($telefone02)) {
                 $telefone02->delete();
             }
+        }
 
-            if(isset($request->telefone02)) {
-                if(isset($telefone02)) {
-                    $this->telefones->find($telefone02->id)->update([
-                        'contato_id' => $contato->id,
-                        'numero'  => $request->telefone02,
-                        'tipo_telefone_id' => $request->tipo02
-                    ]);
-                } else {
-                    $telefone02 = $this->telefones->create([
-                        'contato_id' => $contato->id,
-                        'numero'  => $request->telefone02,
-                        'tipo_telefone_id' => $request->tipo02
-                    ]);
-                }
+        if(isset($request->telefone02)) {
+            if(isset($telefone02)) {
+                $this->telefones->find($telefone02->id)->update([
+                    'contato_id' => $contato->id,
+                    'numero'  => $request->telefone02,
+                    'tipo_telefone_id' => $request->tipo02
+                ]);
+            } else {
+                $telefone02 = $this->telefones->create([
+                    'contato_id' => $contato->id,
+                    'numero'  => $request->telefone02,
+                    'tipo_telefone_id' => $request->tipo02
+                ]);
             }
-
 
             //muitos para muitos
             $categorias_id = $request->categoria;
@@ -186,9 +184,8 @@ class ContatoController extends Controller
                     $contato->categoriaRelationship()->attach($categoria_id);
                 }
             }
-
-            return redirect()->route('contatos.show', $contato->id);
         }
+        return redirect()->route('contatos.show', $contato->id);
     }
 
     /**
