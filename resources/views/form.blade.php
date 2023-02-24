@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR   ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +72,14 @@
 
             {!! Form::submit('Salvar')!!}
 
+
         {!! Form::close() !!}
+
+        @if(isset($contato))
+            {!! Form::open(['route' => ['contatos.destroy', $contato->id] ,'method' => 'DELETE', 'name' => 'form']) !!}
+                {!! Form::submit('Deletar') !!}
+            {!! Form::close() !!}
+        @endif
     </div>
 
 </body>

@@ -203,5 +203,6 @@ class ContatoController extends Controller
             $telefone->delete();
         }
         $contato->delete();
+        return redirect()->route('contatos.index');
     }
 }
