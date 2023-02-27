@@ -61,7 +61,8 @@ class ContatoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $contato = $this->contatos->create([
             'nome' => $request->nome,
             'endereco_id' => $this->enderecos->create([
@@ -78,7 +79,7 @@ class ContatoController extends Controller
             'tipo_telefone_id' => $request->tipo
         ]);
 
-        if(isset($request->telefone02)){
+        if (isset($request->telefone02)) {
             $telefone02 = $this->telefones->create([
                 'contato_id' => $contato->id,
                 'numero' => $request->telefone02,
@@ -134,7 +135,8 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         // dd($request->all());
         $contato = $this->contatos->find($id);
         $contato->update([
@@ -154,14 +156,14 @@ class ContatoController extends Controller
         ]);
 
         $telefone02 = $contato->telefone->get(1);
-        if(empty($request->telefone02)) {
-            if(isset($telefone02)) {
+        if (empty($request->telefone02)) {
+            if (isset($telefone02)) {
                 $telefone02->delete();
             }
         }
 
-        if(isset($request->telefone02)) {
-            if(isset($telefone02)) {
+        if (isset($request->telefone02)) {
+            if (isset($telefone02)) {
                 $this->telefones->find($telefone02->id)->update([
                     'contato_id' => $contato->id,
                     'numero'  => $request->telefone02,
@@ -174,17 +176,18 @@ class ContatoController extends Controller
                     'tipo_telefone_id' => $request->tipo02
                 ]);
             }
+        }
 
-            //muitos para muitos
-            $categorias_id = $request->categoria;
-            $contato->categoriaRelationship()->sync(null);
+        //muitos para muitos
+        $categorias_id = $request->categoria;
+        $contato->categoriaRelationship()->sync(null);
 
-            if(isset($categorias_id)) {
-                foreach ($categorias_id as $categoria_id) {
-                    $contato->categoriaRelationship()->attach($categoria_id);
-                }
+        if (isset($categorias_id)) {
+            foreach ($categorias_id as $categoria_id) {
+                $contato->categoriaRelationship()->attach($categoria_id);
             }
         }
+        
         return redirect()->route('contatos.show', $contato->id);
     }
 
