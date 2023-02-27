@@ -71,16 +71,16 @@
 
             <br>
 
-            {!! Form::submit('Salvar')!!}
-
+            {!! Form::submit('Salvar',['class'=> 'btn btn-success mt-2 mb-2' ,$form??null])!!}
 
         {!! Form::close() !!}
 
         @if(isset($contato))
             {!! Form::open(['route' => ['contatos.destroy', $contato->id] ,'method' => 'DELETE', 'name' => 'form']) !!}
-                {!! Form::submit('Deletar') !!}
+                {!! Form::submit('Deletar', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         @endif
+
     </div>
 
 </body>

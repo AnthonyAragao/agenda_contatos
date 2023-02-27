@@ -10819,11 +10819,18 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+h1, .h1 {
+  font-family: "Edu SA Beginner", cursiva;
+  font-size: 4rem;
+}
+
 body {
   min-height: 100vh;
   min-width: 100vw;
-  background-image: url(/images/natureza.jpg?40732731ce5592cdc48bc6909ac9b120);
+  background-image: url(/images/bg01.jpg?aae19cbd468cf484e061589728258308);
   background-size: cover;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
 }

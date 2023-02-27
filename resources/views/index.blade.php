@@ -6,15 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="text-center">Listagem de Contatos</h1>
-    <a href="{{route('contatos.create')}}">Novo contato</a>
+    <h1 class="text-center" style="padding-top:1rem;">Listagem de Contatos</h1>
+    <a href="{{route('contatos.create')}}">
+        <button type="button" class="btn btn-primary" style="margin-left: 2rem;">Novo contato</button>
+    </a>
 
-    <div class="container">
+    <div style="width: 50%; margin-left: 2rem;">
         <table class="table mx-auto">
             <thead class="table-dark">
-                <h3 class="text-center mt-5">Contatos</h3>
+                <h3 class="text-center mt-3">Contatos</h3>
                 <tr>
                     <th>Nome</th>
                     <th>Telefones</th>
@@ -28,8 +37,9 @@
 
                         <td>
                         @foreach ($contato->telefone as $telefone)
-                            <br>{{$telefone->numero}}
+                                {{$telefone->numero}}
                                 ({{$telefone->tipoTelefone->nome}});
+                                <br>
                         @endforeach
                         </td>
 
