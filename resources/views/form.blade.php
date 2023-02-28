@@ -27,7 +27,7 @@
         @endif
 
 
-        <div>
+        <div style="margin-top: 15px;">
             {!! Form::open(['route' => 'contatos.store','method' => 'POST', 'name' => 'form']) !!}
                 {!!Form::label('nome', 'Nome: ')!!}
                 {!!Form::text('nome', isset($contato)?$contato->nome:null, ['placeholder'=>'Informe os nome:', ($form)??null]) !!}

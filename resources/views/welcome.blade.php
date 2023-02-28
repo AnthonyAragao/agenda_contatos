@@ -18,10 +18,9 @@
 
 <body class="treinamento">
     <div id="title-treinamento">
-        <h1
-            style="background-color: rgba(0, 0, 0, 0.815); margin: 0; padding: 0; padding-left: 2rem; padding-top: 0rem;
-        ">
-            Projeto Treinamento DITIN</h1>
+        <h1 style="background-color: rgba(0, 0, 0, 0.699); margin: 0; padding: 0; padding-left: 2rem; padding-top: 2px; padding-bottom: 8px; ">
+            Projeto Treinamento DITIN
+        </h1>
     </div>
 
 
