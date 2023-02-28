@@ -9,6 +9,7 @@ h1{
     font-size: 4rem;
 }
 
+
 body{
     min-height: 100vh;
     min-width: 100vw;
@@ -33,3 +34,31 @@ body{
     padding-top: 1rem;
     padding-right: 1rem;
 }
+
+.treinamento{
+    background-image: url(../../public/images/man.jpg);
+    background-size: cover;
+}
+
+#title-treinamento{
+    color: white;
+    text-align: center;
+}
+
+
+#saudacao{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    margin-top: 12rem;
+    margin-right: 2rem;
+    position: relative;
+    background-color: #ffffffe8;
+    width: 550px;
+    left: 800px;
+    border-radius: 20px;
+    padding: 30px 10px;
+}
+
+

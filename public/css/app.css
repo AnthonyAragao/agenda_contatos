@@ -10850,3 +10850,28 @@ body {
   padding-top: 1rem;
   padding-right: 1rem;
 }
+
+.treinamento {
+  background-image: url(/images/man.jpg?0d09b07115a486bf4bff29110a46b758);
+  background-size: cover;
+}
+
+#title-treinamento {
+  color: white;
+  text-align: center;
+}
+
+#saudacao {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  margin-top: 12rem;
+  margin-right: 2rem;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9098039216);
+  width: 550px;
+  left: 800px;
+  border-radius: 20px;
+  padding: 30px 10px;
+}

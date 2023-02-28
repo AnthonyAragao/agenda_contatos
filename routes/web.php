@@ -14,9 +14,11 @@ use App\Http\Controllers\ContatoController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
-Route::get('/', [ContatoController::class, 'index'])->name('contatos.index');
+Route::get('index', [ContatoController::class, 'index'])->name('contatos.index');
 Route::get('create', [ContatoController::class, 'create'])->name('contatos.create');
 Route::post('store', [ContatoController::class, 'store'])->name('contatos.store');
 Route::get('show/{id}', [ContatoController::class, 'show'])->name('contatos.show');
