@@ -21,7 +21,7 @@ class TelefoneSeeder extends Seeder
 
         DB::table('telefones')->insert([
             'numero' => '(79) 9 8128-3974',
-            'contato_id' => 1,
+            'contato_id' => 2,
             'tipo_telefone_id' => 1
         ]);
     }
