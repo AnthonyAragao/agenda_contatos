@@ -85,7 +85,7 @@
 
             @if(isset($contato))
                 {!! Form::open(['route' => ['contatos.destroy', $contato->id] ,'method' => 'DELETE', 'name' => 'form']) !!}
-                    {!! Form::submit('Deletar', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Deletar', ['class' => 'btn btn-danger',$form??null]) !!}
                 {!! Form::close() !!}
             @endif
 

@@ -19,10 +19,6 @@ class ContatoSeeder extends Seeder
             'endereco_id' => 1
         ]);
 
-        DB::table('contatos')->insert([
-            'nome' => 'Bob Rodrigo',
-            'endereco_id' => 1
-        ]);
     }
 
 
