@@ -68,3 +68,14 @@ input{
     border: none;
     outline: none;
 }
+
+.btn-voltar{
+    width: 5%;
+    padding-top: 10px;
+    padding-left: 10px;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+}
+.btn-voltar:hover{
+    width: 7%;
+}

@@ -15,6 +15,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">
 </head>
 <body class="form-relatorio">
+
+    <a href="{{route('contatos.index')}}" >
+        <img src="{{asset('images/left.png')}}" alt="btn-voltar" class="btn-voltar">
+    </a>
+
+
     <div class="form-container">
         <header>
             <h1 class="text-center">Formulário de Contato</h1>

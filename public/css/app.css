@@ -10855,9 +10855,6 @@ body {
   background-image: url(/images/man.jpg?0d09b07115a486bf4bff29110a46b758);
   background-size: cover;
 }
-.treinamento img {
-  opacity: 0.5;
-}
 
 #title-treinamento {
   color: white;
@@ -10884,4 +10881,16 @@ input {
   margin: 2px;
   border: none;
   outline: none;
+}
+
+.btn-voltar {
+  width: 5%;
+  padding-top: 10px;
+  padding-left: 10px;
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+}
+
+.btn-voltar:hover {
+  width: 7%;
 }
