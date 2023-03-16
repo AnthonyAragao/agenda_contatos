@@ -1,3 +1,8 @@
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 *{
@@ -70,12 +75,7 @@ input{
 }
 
 .btn-voltar{
-    width: 5%;
     padding-top: 10px;
     padding-left: 10px;
-    transition: all 0.2s ease-in-out;
     position: absolute;
-}
-.btn-voltar:hover{
-    width: 7%;
 }

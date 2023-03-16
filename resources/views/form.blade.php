@@ -17,9 +17,11 @@
 <body class="form-relatorio">
 
     <a href="{{route('contatos.index')}}" >
-        <img src="{{asset('images/left.png')}}" alt="btn-voltar" class="btn-voltar">
+        <div class="btn-voltar">
+            <i class="fa-3x fa-regular fa-circle-left"> </i>
+        </div>
     </a>
-
+    {{-- <i class="fa-regular fa-circle-left"></i> --}}
 
     <div class="form-container">
         <header>
